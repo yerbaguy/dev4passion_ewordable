@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View,Image,Dimensions,TouchableOpacity} from 'react-native';
 import { useNavigation,useTheme } from '@react-navigation/native';
+import { useRoute } from "@react-navigation/native"
 
 import YoutubeIframe from 'react-native-youtube-iframe';
 
 const MiniCard = (props)=>{
+//const MiniCard = ({ navigation }) => {  
 
     const[playing, setPlayint] = useState(false);
 
-    const navigation = useNavigation();
+   // const navigation = useNavigation();
     const {colors} = useTheme()
     const textcolor = colors.iconColor
 
@@ -32,6 +34,21 @@ const MiniCard = (props)=>{
 
 
     <View style={{flexDirection:"row",margin:10,marginBottom:0}}>
+
+
+        {/* youtube */}
+        {/* <YoutubeIframe
+          height={300}
+          play={playing}
+          //    2ILMLDy0L5E
+          //    videoId={'iee2TATGMyI'}
+          videoId={'2ILMLDy0L5E'}
+        /> */}
+
+
+
+
+
         <Image 
         //    source={{uri:`https://i.ytimg.com/vi/${props.videoId}/hqdefault.jpg`}}
         //    source={{uri:`https://i.ytimg.com/vi/${props.videoId}/maxresdefault.jpg`}}

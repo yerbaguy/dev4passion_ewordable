@@ -6,6 +6,8 @@ import { View, Text, SafeAreaView, TextInput, Button, FlatList } from 'react-nat
 import YoutubeIframe from 'react-native-youtube-iframe';
 import MiniCard from '../components/MiniCard';
 import { getSubtitles } from 'youtube-captions-scraper';
+
+import { useNavigation, useRoute, useTheme } from '@react-navigation/native';
 //import MiniCard from './components/MiniCard';
 
 // import {
@@ -17,21 +19,60 @@ import { getSubtitles } from 'youtube-captions-scraper';
 // } from '@drorgl/youtube-captions-scraper'
 
 
-const VideoPlayer = () => {
+  const VideoPlayer = (props) => {
+ //const VideoPlayer = ({ navigation }) => {    
+
+   // const navigation = useNavigation();
 
     const [playing, setPlayint] = useState(false);
     const [value, setValue] = useState([]);
     const [miniCardData, setMiniCard] = useState([]);
-    // const [videoId, setVideoId] = useState();
-    const [videoId, setVideoId] = useState([]);
+     const [videoId, setVideoId] = useState();
+   
+   // const [videoId, setVideoId] = useState([]);
+   
     // const [vidid, setVidId] = useState([]);
     const [data, setData] = useState();
 
+    const [vid, setVid] = useState([]);
+
+    // onPress = {()=> navigation.navigate("videoplayer", { videoId: props.videoID, title: props.title })}
+
+
+    // console.log("MiniCard-videoId---------VideoPlayer", videoId[0])
+
+      
+      const { videoid } = props;
+    //   console.log("MiniCard-videoId---------VideoPlayer", videoId[0])
+      console.log("MiniCard-videoId---------VideoPlayer", props.videoID);
+    //   let videoid = videoId[0];
+    //   console.log("videoid", videoid);
+
+
+    // setVid(videoId[0])
+    // console.log("vid", vid);
+
+
+
     useEffect(() => {
 
+        // const videoid = videoId[0]
+        // console.log("vid", vid);
+
+        // const route = useRoute();
+        // const video = route.params?.videoID;
+        // console("video", video);
+
+       // setVid(videoid);
+
         // getCheck();
-         getSubtitls();
+        
+         //getSubtitls();
          fetchData();
+         //result();
+
+        //  let vidd = 'l3zipB6nek8';
+        // setVid(vidd);
 
 
     }, [])
@@ -49,6 +90,8 @@ const VideoPlayer = () => {
 
     const fetchData = () => {
 
+        // AIzaSyB6PTTWY1hIdDCwvS2g0u8UYnPTyy78YVA
+
         // https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=songs&type=video&key=[YOUR_API_KEY]
 
         // fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${value}&type=video&key=AIzaSyDUWweYDFXkKW7jk8tGW5OMfZ2tkDdFTx4`)
@@ -57,7 +100,9 @@ const VideoPlayer = () => {
         //     console.log("data", data)
         // })
 
-        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${value}&type=video&key=AIzaSyDUWweYDFXkKW7jk8tGW5OMfZ2tkDdFTx4`)
+        // fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${value}&type=video&key=AIzaSyDUWweYDFXkKW7jk8tGW5OMfZ2tkDdFTx4`)
+        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${value}&type=video&key=AIzaSyB6PTTWY1hIdDCwvS2g0u8UYnPTyy78YVA`)
+
             .then(res => res.json())
             .then(data => {
                 // console.log("data", data)
@@ -72,7 +117,26 @@ const VideoPlayer = () => {
 
                 //setData(data);
                 setVideoId(data.items)
-                console.log("data-id-videoid", videoId)
+                // console.log("data-id-videoid", videoId)
+                // console.log("data-id-videoid", data.items)
+
+                // console.log("data-id-videoid", data.kind) //youtube#searchListResponse
+                // console.log("data-id-videoid", data.items[0].id.videoID)
+                // console.log("data-id-videoid", data.items[0].id.videoId)
+                console.log("data-id-videoid", data.items.etag)
+
+                //setVid(data.items[0].id.videoID);
+
+                // const result = async () => {
+
+                //    const resultt =  await data.items[0].id.videoID;
+                //     console.log("resultt", resultt);
+                //    return resultt;
+
+                // }
+
+
+
 
 
 
@@ -141,6 +205,17 @@ const VideoPlayer = () => {
                     onPress={() => fetchData()}
                 />
 
+            <TextInput style={{
+                width: "70%",
+                backgroundcolor: "#e6e6e6"
+            }}
+
+                value={vid}
+                onChangeText={(text) => setVid(text)}
+
+            />
+            <Text>Vide { vid }</Text>
+
                 <YoutubeIframe
                     height={300}
                     play={playing}
@@ -148,7 +223,19 @@ const VideoPlayer = () => {
                     //    videoId={'iee2TATGMyI'}
 
                     // videoId={'2ILMLDy0L5E'}
-                    videoId={'RveHGe2uvbk'}
+                    
+                     //videoId={'RveHGe2uvbk'} //here
+                     
+                      // videoId={ videoId }
+                
+                      ///// videoId={ '6NvLJHUpa-M'}
+
+                          videoId={vid}
+                        //videoId={ 'Y9y0pETKG1g' }
+
+                      //    videoID={ props.videoID[0] }
+
+
                 //videoId={videoId}
                 />
 
