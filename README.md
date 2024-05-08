@@ -1,2 +1,2 @@
 # dev4passion_ewordable
-Educational application
+Application to learn and practice languages

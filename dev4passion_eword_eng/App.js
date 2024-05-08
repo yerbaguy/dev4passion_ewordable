@@ -29,6 +29,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import VideoPlayer from './src/screens/VideoPlayer';
 
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
@@ -88,6 +89,7 @@ const HomeScreen = () => {
       <Drawer.Screen name="Main" component={MainScreen} />
       <Drawer.Screen name="Account" component={Account} />
       <Drawer.Screen name="Add Product" component={AddProduct} />
+      <Drawer.Screen name="Vide Player" component={VideoPlayer} />
 
       {/* <Drawer.Screen name="DummyHome" component={MainScreen} /> */}
       {/* <Drawer.Screen name="SettingsScreen" component={SettingsScreen} /> */}
